@@ -30,7 +30,7 @@ jobs:
         node-version: '16.3.0'
 
     - name: Build Web Pages
-      run: npm install && npm build
+      run: npm install && npm run build
 
 #    - name: Deploy to Staging server
 #      uses: easingthemes/ssh-deploy@main
