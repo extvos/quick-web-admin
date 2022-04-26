@@ -6,16 +6,15 @@
 		<!-- Footer Navigation Menu -->
 		<a-menu mode="horizontal">
 			<a-menu-item>Company </a-menu-item>
-			<a-menu-item>About Us</a-menu-item>
 			<a-menu-item>Team </a-menu-item>
 			<a-menu-item>Products</a-menu-item>
 			<a-menu-item>Blog</a-menu-item>
-			<a-menu-item>Pricing</a-menu-item>
+			<a-menu-item>About Us</a-menu-item>
 		</a-menu>
 		<!-- / Footer Navigation Menu -->
 
 		<!-- Footer Social Menu -->
-		<a-menu mode="horizontal" class="menu-nav-social">
+		<!-- <a-menu mode="horizontal" class="menu-nav-social">
 			<a-menu-item>
 				<a href="#">
 					<svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -51,13 +50,12 @@
 					</svg>
 				</a>
 			</a-menu-item>
-		</a-menu>
+		</a-menu> -->
 		<!-- / Footer Social Menu -->
 		
 		<!-- Copyright Notice -->
 		<p class="copyright">
-			Copyright © 2021 Muse
-			by <a href="https://creative-tim.com">Creative Tim</a>.
+			Copyright © 2022 EXTVOS. Template by  <a href="https://creative-tim.com">Creative Tim</a> .
 		</p>
 		<!-- / Copyright Notice -->
 
