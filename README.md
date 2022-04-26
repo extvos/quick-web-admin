@@ -1,131 +1,243 @@
-<div align="center">
-	<img src="https://gitee.com/lyt-top/vue-next-admin-images/raw/master/logo/logo-text.svg">
-	<p align="center">
-	    <a href="https://v3.vuejs.org/" target="_blank">
-	        <img src="https://img.shields.io/badge/vue.js-vue3.x-green" alt="vue">
-	    </a>
-	    <a href="https://element-plus.gitee.io/#/zh-CN/component/changelog" target="_blank">
-	        <img src="https://img.shields.io/badge/element--plus-%3E1.0.0-blue" alt="element plus">
-	    </a>
-		<a href="https://www.tslang.cn/" target="_blank">
-	        <img src="https://img.shields.io/badge/typescript-%3E4.0.0-blue" alt="typescript">
-	    </a>
-		<a href="https://vitejs.dev/" target="_blank">
-		    <img src="https://img.shields.io/badge/vite-%3E2.0.0-yellow" alt="vite">
-		</a>
-		<a href="https://gitee.com/lyt-top/vue-next-admin/blob/master/LICENSE" target="_blank">
-		    <img src="https://img.shields.io/badge/license-MIT-success" alt="license">
-		</a>
-	</p>
-	<p>&nbsp;</p>
-</div>
+# [Muse Vue Ant Design Dashboard](http://demos.creative-tim.com/muse-vue-ant-design-dashboard?ref=readme-sud) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/intent/tweet?url=https://www.creative-tim.com/product/muse-vue-ant-design-dashboard&text=Check%20Muse%20Vue%20Ant%20Design%20made%20by%20@CreativeTim%20#webdesign%20#dashboard%20#antdesign%20#vue%20https://www.creative-tim.com/product/muse-vue-ant-design-dashboard)
 
-#### 🌈 介绍
+![version](https://img.shields.io/badge/version-1.0.0-blue.svg) [![GitHub issues open](https://img.shields.io/github/issues/creativetimofficial/muse-vue-ant-design-dashboard.svg)](https://github.com/creativetimofficial/muse-vue-ant-design-dashboard/issues?q=is%3Aopen+is%3Aissue) [![GitHub issues closed](https://img.shields.io/github/issues-closed-raw/creativetimofficial/muse-vue-ant-design-dashboard.svg)](https://github.com/creativetimofficial/muse-vue-ant-design-dashboard/issues?q=is%3Aissue+is%3Aclosed)
 
-基于 vue3.x + CompositionAPI + typescript + vite + element plus + vue-router-next + next.vuex，适配手机、平板、pc 的后台开源免费模板，希望减少工作量，帮助大家实现快速开发。
+![Image](https://s3.amazonaws.com/creativetim_bucket/products/494/original/opt_md_ant_thumbnail.jpg)
 
-#### ⛱️ 线上预览
+Muse - Vue Ant Design Dashboard is a beautiful Ant Design Vue admin dashboard with a large number of components, designed to look beautiful and organized
 
-- vue3.x 版本预览（vue-next-admin）<a href="https://lyt-top.gitee.io/vue-next-admin-preview/#/login" target="_blank">https://lyt-top.gitee.io/vue-next-admin-preview/#/login</a>
-- vue2.x 版本预览（vue-prev-admin）<a href="https://lyt-top.gitee.io/vue-prev-admin-preview/#/login" target="_blank">https://lyt-top.gitee.io/vue-prev-admin-preview/#/login</a>
+Designed for those who like bold elements and beautiful websites. Made of hundred of elements, designed blocks and fully coded pages, Soft UI Dashboard is ready to help you create stunning websites and webapps.
 
-#### 💒 代码仓库
+We created many examples for pages like Sign In, Profile and so on. Just choose between a Basic Design, an illustration or a cover and you are good to go!
 
-- vue3.x 版本 <a href="https://gitee.com/lyt-top/vue-next-admin" target="_blank">https://gitee.com/lyt-top/vue-next-admin</a>
-- vue2.x 版本 <a href="https://gitee.com/lyt-top/vue-next-admin/tree/vue-prev-admin" target="_blank">https://gitee.com/lyt-top/vue-next-admin/tree/vue-prev-admin</a>
+**Fully Coded Elements**
 
-#### 🚧 安装 cnpm、yarn
+Muse - Vue Ant Design Dashboard is built with over 70 frontend individual elements, like buttons, inputs, navbars, navtabs, cards or alerts, giving you the freedom of choosing and combining. All components can take variations in colour, that you can easily modify using SASS files and classes. You will save a lot of time going from prototyping to full-functional code, because all elements are implemented.
 
-- 复制代码(桌面 cmd 运行) `npm install -g cnpm --registry=https://registry.npm.taobao.org`
-- 复制代码(桌面 cmd 运行) `npm install -g yarn`
+View <a href="https://www.creative-tim.com/muse-vue-ant-design-dashboard/documentation/" target="_blank">all components here</a>.
 
-#### 🏭 环境支持
+**Documentation built by Developers**
 
-| Edge                                                                     | last 2 versions                                                                   | last 2 versions                                                                | last 2 versions                                                                |
-| ------------------------------------------------------------------------ | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| ![Edge](https://cdn.jsdelivr.net/npm/@browser-logos/edge/edge_32x32.png) | ![Firefox](https://cdn.jsdelivr.net/npm/@browser-logos/firefox/firefox_32x32.png) | ![Chrome](https://cdn.jsdelivr.net/npm/@browser-logos/chrome/chrome_32x32.png) | ![Safari](https://cdn.jsdelivr.net/npm/@browser-logos/safari/safari_32x32.png) |
+Each element is well presented in a very complex documentation.
+You can read more about the <a href="https://www.creative-tim.com/muse-vue-ant-design-dashboard/documentation/" target="_blank">documentation here</a>.
 
-> 由于 Vue3 不再支持 IE11，故而 ElementPlus 也不支持 IE11 及之前版本。
+**Example Pages**
 
-#### ⚡ 使用说明
+If you want to get inspiration or just show something directly to your clients,
+you can jump start your development with our pre-built example pages. You will be able
+to quickly set up the basic structure for your web project.
+View <a href="https://www.creative-tim.com/muse-vue-ant-design-dashboard" target="_blank">example pages here</a>.
 
-建议使用 cnpm，因为 yarn 有时会报错。<a href="http://nodejs.cn/" target="_blank">node 版本 > 12xx.xx.x</a>
+**HELPFUL LINKS**
 
-```bash
-# 克隆项目
-git clone https://gitee.com/lyt-top/vue-next-admin.git
+- View <a href="https://github.com/creativetimofficial/muse-vue-ant-design-dashboard" target="_blank">Github Repository</a>
 
-# 进入项目
-cd vue-next-admin
+- Check <a href="https://www.creative-tim.com/faq" target="_blank">FAQ Page</a>
 
-# 安装依赖
-cnpm install
+**Special thanks**
 
-# 运行项目
-cnpm run dev
+During the development of this dashboard, we have used many existing resources from awesome developers. We want to thank them for providing their tools open source:
 
-# 打包发布
-cnpm run build
+- [Ant Design Vue](https://www.antdv.com/docs/vue/introduce/)- An enterprise-class UI design language for web applications
+
+Let us know your thoughts below. And good luck with development!
+
+## Table of Contents
+
+* [Versions](#versions)
+* [Demo](#demo)
+* [Quick Start](#quick-start)
+* [Documentation](#documentation)
+* [File Structure](#file-structure)
+* [Browser Support](#browser-support)
+* [Resources](#resources)
+* [Reporting Issues](#reporting-issues)
+* [Technical Support or Questions](#technical-support-or-questions)
+* [Licensing](#licensing)
+* [Useful Links](#useful-links)
+
+## Versions
+
+[<img src="https://s3.amazonaws.com/creativetim_bucket/github/html.png" width="60" height="60" />](https://www.creative-tim.com/product/muse-vue-ant-design-dashboard?ref=readme-sud)
+
+| HTML |
+| --- |
+| [![Muse Vue Ant Design Dashboard](https://s3.amazonaws.com/creativetim_bucket/products/494/thumb/opt_md_ant_thumbnail.jpg)](http://demos.creative-tim.com/muse-vue-ant-design-dashboard?ref=readme-sud)
+
+## Demo
+
+- [Profile page](http://demos.creative-tim.com/muse-vue-ant-design-dashboard/profile?ref=readme-sud)
+- [Sign in page](http://demos.creative-tim.com/muse-vue-ant-design-dashboard/sign-in?ref=readme-sud)
+- [Sign up page](http://demos.creative-tim.com/muse-vue-ant-design-dashboard/sign-up?ref=readme-sud)
+
+[View More](http://demos.creative-tim.com/muse-vue-ant-design-dashboard).
+
+## Quick start
+
+Quick start options:
+
+- Download from [Creative Tim](https://www.creative-tim.com/product/muse-vue-ant-design-dashboard?ref=readme-sud).
+
+## Terminal Commands
+
+1. Download and Install NodeJs from [NodeJs Official Page](https://nodejs.org/en/download/).
+2. Navigate to the root / directory and run npm install to install our local dependencies.
+
+## Documentation
+The documentation for the Muse Vue Ant Design Dashboard is hosted at our [website](http://demos.creative-tim.com/muse-vue-ant-design-dashboard/documentation?ref=readme-sud).
+
+### What's included
+
+Within the download you'll find the following directories and files:
+
+```
+muse-vue-ant-design-dashboard
+├── LICENSE
+├── README.md
+├── babel.config.js
+├── gulpfile.js
+├── package.json
+├── public
+│   ├── imagesd
+│   └── index.html
+├── src
+│   ├── App.vue
+│   ├── assets
+│   ├── components
+│   │   ├── Cards
+│   │   │   ├── CardAuthorTable.vue
+│   │   │   ├── CardBarChart.vue
+│   │   │   ├── CardBillingInfo.vue
+│   │   │   ├── CardConversations.vue
+│   │   │   ├── CardCredit.vue
+│   │   │   ├── CardInfo.vue
+│   │   │   ├── CardInfo2.vue
+│   │   │   ├── CardInvoices.vue
+│   │   │   ├── CardLineChart.vue
+│   │   │   ├── CardOrderHistory.vue
+│   │   │   ├── CardPaymentMethods.vue
+│   │   │   ├── CardPlatformSettings.vue
+│   │   │   ├── CardProfileInformation.vue
+│   │   │   ├── CardProject.vue
+│   │   │   ├── CardProjectTable.vue
+│   │   │   ├── CardProjectTable2.vue
+│   │   │   └── CardTransactions.vue
+│   │   ├── Charts
+│   │   │   ├── ChartBar.vue
+│   │   │   └── ChartLine.vue
+│   │   ├── Footers
+│   │   │   ├── DashboardFooter.vue
+│   │   │   └── DefaultFooter.vue
+│   │   ├── Headers
+│   │   │   ├── DashboardHeader.vue
+│   │   │   └── DefaultHeader.vue
+│   │   ├── Sidebars
+│   │   │   ├── DashboardSettingsDrawer.vue
+│   │   │   └── DashboardSidebar.vue
+│   │   └── Widgets
+│   │       ├── WidgetCounter.vue
+│   │       └── WidgetSalary.vue
+│   ├── layouts
+│   │   ├── Dashboard.vue
+│   │   ├── DashboardRTL.vue
+│   │   └── Default.vue
+│   ├── main.js
+│   ├── plugins
+│   │   └── click-away.js
+│   ├── router
+│   │   └── index.js
+│   ├── scss
+│   │   ├── app.scss
+│   │   ├── base
+│   │   │   ├── _override.scss
+│   │   │   ├── _typography.scss
+│   │   │   ├── _utilities.scss
+│   │   │   └── _variables.scss
+│   │   ├── components
+│   │   │   ├── _avatar.scss
+│   │   │   ├── _badge.scss
+│   │   │   ├── _button.scss
+│   │   │   ├── _card.scss
+│   │   │   ├── _chart.scss
+│   │   │   ├── _dropdown.scss
+│   │   │   ├── _list.scss
+│   │   │   ├── _progress.scss
+│   │   │   ├── _settings-drawer.scss
+│   │   │   ├── _space.scss
+│   │   │   ├── _table.scss
+│   │   │   ├── _tag.scss
+│   │   │   ├── _timeline.scss
+│   │   │   └── _widget.scss
+│   │   ├── form
+│   │   │   ├── _checkbox.scss
+│   │   │   └── _input.scss
+│   │   ├── layouts
+│   │   │   ├── _dashboard-rtl.scss
+│   │   │   ├── _dashboard.scss
+│   │   │   └── _default.scss
+│   │   └── pages
+│   │       ├── _profile.scss
+│   │       ├── _sign-in.scss
+│   │       └── _sign-up.scss
+│   └── views
+│       ├── 404.vue
+│       ├── Billing.vue
+│       ├── Dashboard.vue
+│       ├── Layout.vue
+│       ├── Profile.vue
+│       ├── RTL.vue
+│       ├── Sign-In.vue
+│       ├── Sign-Up.vue
+│       └── Tables.vue
+└── vue.config.js
 ```
 
-#### 💯 学习交流加 QQ 群
+## Browser Support
 
-- 若加群了没同意（一般不会超过一天），那就是群满了，请换一个群试试
-- 查看开发文档：<a href="https://lyt-top.gitee.io/vue-next-admin-doc-preview" target="_blank">vue-next-admin-doc</a>
-- 群号码：
-  1 群：<a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=RdUY97Vx0T0vZ_1OOu-X1yFNkWgDwbjC&jump_from=webapi">665452019</a>
-  2 群：<a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=zVfy3gNy7pNWVK3kMduDzwU369PZg2fw&jump_from=webapi">766356862</a>
+At present, we officially aim to support the last two versions of the following browsers:
 
-  <a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=RdUY97Vx0T0vZ_1OOu-X1yFNkWgDwbjC&jump_from=webapi">
-  	<img src="https://gitee.com/lyt-top/vue-next-admin-images/raw/master/user/qq1.png" width="220" height="220" alt="vue-next-admin 讨论群" title="vue-next-admin 讨论群1"/>
-  </a>
-  <a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=zVfy3gNy7pNWVK3kMduDzwU369PZg2fw&jump_from=webapi">
-  	<img src="https://gitee.com/lyt-top/vue-next-admin-images/raw/master/user/qq2.png" width="220" height="220" alt="vue-next-admin 讨论群" title="vue-next-admin 讨论群2"/>
-  </a>
+<img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/chrome.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/firefox.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/edge.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/safari.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/opera.png" width="64" height="64">
 
-#### 💒 集成后端
+## Resources
+- [Live Preview](https://demos.creative-tim.com/muse-vue-ant-design-dashboard?ref=readme-sud)
+- [Download Page](https://www.creative-tim.com/product/muse-vue-ant-design-dashboard?ref=readme-sud)
+- Documentation is [here](https://demos.creative-tim.com/muse-vue-ant-design-dashboard/documentation?ref=readme-sud)
+- [License Agreement](https://www.creative-tim.com/license?ref=readme-sud)
+- [Support](https://www.creative-tim.com/contact-us?ref=readme-sud)
+- Issues: [Github Issues Page](https://github.com/creativetimofficial/muse-vue-ant-design-dashboard/issues)
 
-- <a target="_blank" href="https://github.com/PandaGoAdmin/PandaX">@熊猫 PandaGoAdmin</a>
-- <a target="_blank" href="https://www.gnet.top/public">@甜蜜蜜 GoPro 平台</a>
+## Reporting Issues
+We use GitHub Issues as the official bug tracker for the Muse Vue Ant Design Dashboard. Here are some advices for our users that want to report an issue:
 
-#### ❤️ 鸣谢列表
+1. Make sure that you are using the latest version of the Muse Vue Ant Design Dashboard. Check the CHANGELOG from your dashboard on our [website](https://www.creative-tim.com/product/muse-vue-ant-design-dashboard?ref=readme-sud).
+2. Providing us reproducible steps for the issue will shorten the time it takes for it to be fixed.
+3. Some issues may be browser specific, so specifying in what browser you encountered the issue might help.
 
-- <a href="https://github.com/vuejs/vue" target="_blank">vue</a>
-- <a href="https://github.com/vuejs/vue-next" target="_blank">vue-next</a>
-- <a href="https://github.com/ElemeFE/element" target="_blank">element-ui</a>
-- <a href="https://github.com/element-plus/element-plus" target="_blank">element-plus</a>
-- <a href="https://github.com/vuejs/vue-router-next" target="_blank">vue-router-next</a>
-- <a href="https://github.com/vuejs/vuex" target="_blank">vuex</a>
-- <a href="https://github.com/apache/echarts" target="_blank">echarts</a>
-- <a href="https://github.com/axios/axios" target="_blank">axios</a>
-- <a href="https://github.com/zenorocha/clipboard.js" target="_blank">clipboard</a>
-- <a href="https://github.com/inorganik/countUp.js" target="_blank">countUp</a>
-- <a href="https://github.com/developit/mitt" target="_blank">mitt</a>
-- <a href="https://github.com/rstacruz/nprogress" target="_blank">nprogress</a>
-- <a href="https://github.com/sindresorhus/screenfull.js" target="_blank">screenfull</a>
-- <a href="https://github.com/SortableJS/Sortable" target="_blank">sortablejs</a>
-- <a href="https://github.com/sass/sass" target="_blank">sass</a>
-- <a href="https://github.com/microsoft/TypeScript" target="_blank">typescript</a>
-- <a href="https://github.com/vitejs/vite" target="_blank">vite</a>
-- <a href="https://github.com/wangeditor-team/wangEditor" target="_blank">wangeditor</a>
-- <a href="https://github.com/fengyuanchen/cropperjs" target="_blank">cropperjs</a>
-- <a href="https://github.com/davidshimjs/qrcodejs" target="_blank">qrcodejs</a>
-- <a href="https://github.com/crabbly/Print.js" target="_blank">print-js</a>
-- <a href="https://github.com/likaia/screen-shot" target="_blank">vue-web-screen-shot</a>
-- <a href="https://github.com/jbaysolutions/vue-grid-layout" target="_blank">vue-grid-layout</a>
-- <a href="https://github.com/antoniandre/splitpanes" target="_blank">splitpanes</a>
-- <a href="https://github.com/yimijianfang/vue-drag-verify" target="_blank">vue-drag-verify</a>
-- <a href="https://github.com/jsplumb/jsplumb" target="_blank">jsplumb</a>
+## Technical Support or Questions
 
-#### 💕 特别感谢
+If you have questions or need help integrating the product please [contact us](https://www.creative-tim.com/contact-us?ref=readme-sud) instead of opening an issue.
 
-特别感谢老哥们的建议、指导与帮忙。谢谢！
+## Licensing
 
-- <a href="https://gitee.com/click33/sa-plus" target="_blank">@省长</a>
-- <a href="https://gitee.com/jskz/Jskz-SpringCloud" target="_blank">@唐参
-- <a href="https://gitee.com/chuange" target="_blank">@川歌</a>
+- Copyright 2021 [Creative Tim](https://www.creative-tim.com?ref=readme-sud)
+- Creative Tim [license](https://www.creative-tim.com/license?ref=readme-sud)
 
-#### 💌 支持作者
+## Useful Links
 
-如果觉得框架不错，或者已经在使用了，希望你可以去 <a target="_blank" href="https://github.com/lyt-Top/vue-next-admin">Github</a> 或者
-<a target="_blank" href="https://gitee.com/lyt-top/vue-next-admin">Gitee</a> 帮我点个 ⭐ Star，这将是对我极大的鼓励与支持。
+- [More products](https://www.creative-tim.com/templates?ref=readme-sud) from Creative Tim
+
+- [Tutorials](https://www.youtube.com/channel/UCVyTG4sCw-rOvB9oHkzZD1w)
+
+- [Freebies](https://www.creative-tim.com/bootstrap-themes/free?ref=readme-sud) from Creative Tim
+
+- [Affiliate Program](https://www.creative-tim.com/affiliates/new?ref=readme-sud) (earn money)
+
+##### Social Media
+
+Twitter: <https://twitter.com/CreativeTim>
+
+Facebook: <https://www.facebook.com/CreativeTim>
+
+Dribbble: <https://dribbble.com/creativetim>
+
+Instagram: <https://instagram.com/creativetimofficial>
