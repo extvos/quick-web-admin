@@ -1,45 +1,33 @@
 import request from '@/utils/request'
 import md5 from 'js-md5'
 
-export function loginByUsername(username, password, token) {
+export function loginByUsername(username, password, rememberMe) {
   const data = {
     username,
     password,
-    token
+    rememberMe
   }
-  data.password = md5(username + ':' + token + md5(password))
+  data.salt = 'abc'
+  data.password = md5(username + ':' + data.salt + md5(password))
   return request({
-    url: '/login',
+    url: '/auth/login',
     method: 'post',
     data
   })
 }
 
-export function loginToken() {
-  return request({
-    url: '/login_tk',
-    method: 'get'
-  })
-}
-
 export function logout() {
   return request({
-    url: '/logout',
+    url: '/auth/logout',
     method: 'post'
   })
 }
 
 export function getUserInfo(token) {
   return request({
-    url: '/profile',
+    url: '/auth/profile',
     method: 'get'
     // params: { token }
   })
 }
 
-export function getUserCtx() {
-  return request({
-    url: '/apis/user',
-    method: 'get'
-  })
-}

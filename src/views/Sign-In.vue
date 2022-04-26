@@ -62,12 +62,12 @@
 </template>
 
 <script>
-
+	import loginByUsername from '../api/login'
 	export default ({
 		data() {
 			return {
 				// Binded model property for "Sign In Form" switch button for "Remember Me" .
-				rememberMe: true,
+				rememberMe: false,
 			}
 		},
 		beforeCreate() {
@@ -80,7 +80,10 @@
 				e.preventDefault();
 				this.form.validateFields((err, values) => {
 					if ( !err ) {
-						console.log('Received values of form: ', values) ;
+						console.log('Received values of form: ', values);
+						loginByUsername(values.username, values.password, rememberMe).then(r => {
+							console.log("loginByUsername:",r)
+						});
 					}
 				});
 			},

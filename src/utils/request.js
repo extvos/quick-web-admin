@@ -1,5 +1,4 @@
 import axios from 'axios'
-// import { Message } from 'element-ui'
 import { message } from 'ant-design-vue';
 import store from '@/store'
 import router from '@/router'
@@ -66,6 +65,7 @@ service.interceptors.response.use(
   //   }
   // },
   (error) => {
+    console.log("request error: ", error)
     if (error.response.data.message) {
       message.error(error.response.data.message)
       // Message({
