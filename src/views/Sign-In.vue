@@ -21,12 +21,12 @@
 					@submit="handleSubmit"
 					:hideRequiredMark="true"
 				>
-					<a-form-item class="mb-10" label="Email" :colon="false">
+					<a-form-item class="mb-10" label="Username" :colon="false">
 						<a-input 
 						v-decorator="[
-						'email',
-						{ rules: [{ required: true, message: 'Please input your email!' }] },
-						]" placeholder="Email" />
+						'username',
+						{ rules: [{ required: true, message: 'Please input your username!' }] },
+						]" placeholder="Username" />
 					</a-form-item>
 					<a-form-item class="mb-5" label="Password" :colon="false">
 						<a-input
@@ -46,7 +46,7 @@
 				</a-form>
 				<!-- / Sign In Form -->
 
-				<p class="font-semibold text-muted">Don't have an account? <router-link to="/sign-in" class="font-bold text-dark">Sign Up</router-link></p>
+				<p class="font-semibold text-muted">Don't have an account? <router-link to="/sign-up" class="font-bold text-dark">Sign Up</router-link></p>
 			</a-col>
 			<!-- / Sign In Form Column -->
 
