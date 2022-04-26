@@ -1,5 +1,6 @@
 import axios from 'axios'
 // import { Message } from 'element-ui'
+import { message } from 'ant-design-vue';
 import store from '@/store'
 import router from '@/router'
 import { getToken } from '@/utils/auth'
@@ -66,12 +67,14 @@ service.interceptors.response.use(
   // },
   (error) => {
     if (error.response.data.message) {
+      message.error(error.response.data.message)
       // Message({
       //   message: error.response.data.message,
       //   type: 'error',
       //   duration: 5 * 1000
       // })
     } else {
+      message.error(error.response.data)
       // Message({
       //   message: error.response.data,
       //   type: 'error',
