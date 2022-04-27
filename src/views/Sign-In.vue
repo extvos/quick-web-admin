@@ -35,6 +35,16 @@
 						{ rules: [{ required: true, message: 'Please input your password!' }] },
 						]" type="password" placeholder="Password" />
 					</a-form-item>
+					<a-form-item class="mb-5" label="Captcha" :colon="false">
+						 <a-space>
+							<a-input
+								v-decorator="[
+									'captcha',
+									{ rules: [{ required: true, message: 'Please input your captcha!' }] },
+								]" type="captcha" placeholder="Captcha" />
+							<img class="code" :src="codeUrl" @click="changeCode" />
+						 </a-space>
+					</a-form-item>
 					<a-form-item class="mb-10">
     					<a-switch v-model="rememberMe" /> Remember Me
 					</a-form-item>
@@ -62,12 +72,13 @@
 </template>
 
 <script>
-	import loginByUsername from '../api/login'
+	import { loginByUsername } from '@/api/login'
 	export default ({
 		data() {
 			return {
 				// Binded model property for "Sign In Form" switch button for "Remember Me" .
 				rememberMe: false,
+				codeUrl: '/auth/captcha-image' + '?timestamp=' + new Date().getTime(),
 			}
 		},
 		beforeCreate() {
@@ -81,12 +92,16 @@
 				this.form.validateFields((err, values) => {
 					if ( !err ) {
 						console.log('Received values of form: ', values);
-						loginByUsername(values.username, values.password, rememberMe).then(r => {
+						loginByUsername(values.username, values.password, values.captcha, this.rememberMe).then(r => {
 							console.log("loginByUsername:",r)
+							this.$router.push({ path: '/dashboard' })
 						});
 					}
 				});
 			},
+			changeCode() {
+				this.codeUrl = '/auth/captcha-image' + '?timestamp=' + new Date().getTime()
+		    },
 		},
 	})
 

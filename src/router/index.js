@@ -194,3 +194,6 @@ const router = new VueRouter({
 })
 
 export default router
+
+export const asyncRouterMap = []
+export const constantRouterMap = []

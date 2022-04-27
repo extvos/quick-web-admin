@@ -66,8 +66,8 @@ service.interceptors.response.use(
   // },
   (error) => {
     console.log("request error: ", error)
-    if (error.response.data.message) {
-      message.error(error.response.data.message)
+    if (error.response.data.msg) {
+      message.error(error.response.data.msg)
       // Message({
       //   message: error.response.data.message,
       //   type: 'error',
@@ -83,7 +83,7 @@ service.interceptors.response.use(
     }
 
     if (error.response.status === 403 || error.response.status === 401) {
-      router.push({ path: this.redirect || '/login' })
+      router.push({ path: '/sign-in' })
     }
     return Promise.reject(error)
   }

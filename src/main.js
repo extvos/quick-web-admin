@@ -24,7 +24,9 @@ import i18n from './lang' // Internationalization
 import './icons' // icon
 // import './permission' // permission control
 // import './plugins/click-away'
+import Resource from 'vue-resource';
 
+Vue.use(Resource); //使用resource
 import './scss/app.scss';
 
 Vue.use(Antd);
