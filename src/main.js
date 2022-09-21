@@ -1,44 +1,53 @@
-/*
-=========================================================
-Muse - Vue Ant Design Dashboard - v1.0.0
-=========================================================
-
-Product Page: https://www.creative-tim.com/product/vue-ant-design-dashboard
-Copyright 2021 Creative Tim (https://www.creative-tim.com)
-Coded by Creative Tim
-
-=========================================================
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. 
-*/
-
 import Vue from 'vue'
-import Antd from 'ant-design-vue';
-import 'ant-design-vue/dist/antd.css';
-import App from './App.vue'
-import DefaultLayout from './layouts/Default.vue'
-import DashboardLayout from './layouts/Dashboard.vue'
-import DashboardRTLLayout from './layouts/DashboardRTL.vue'
-import router from './router'
+
+import Cookies from 'js-cookie'
+
+import 'normalize.css/normalize.css' // a modern alternative to CSS resets
+
+import Element from 'element-ui'
+import './styles/element-variables.scss'
+import enLang from 'element-ui/lib/locale/lang/en'// 如果使用中文语言包请默认支持，无需额外引入，请删除该依赖
+
+import '@/styles/index.scss' // global css
+
+import App from './App'
 import store from './store'
-import i18n from './lang' // Internationalization
+import router from './router'
+
 import './icons' // icon
-// import './permission' // permission control
-// import './plugins/click-away'
-import Resource from 'vue-resource';
+import './permission' // permission control
+import './utils/error-log' // error log
 
-Vue.use(Resource); //使用resource
-import './scss/app.scss';
+import * as filters from './filters' // global filters
 
-Vue.use(Antd);
+/**
+ * If you don't want to use mock-server
+ * you want to use MockJs for mock api
+ * you can execute: mockXHR()
+ *
+ * Currently MockJs will be used in the production environment,
+ * please remove it before going online ! ! !
+ */
+if (process.env.NODE_ENV === 'production') {
+  const { mockXHR } = require('../mock')
+  mockXHR()
+}
+
+Vue.use(Element, {
+  size: Cookies.get('size') || 'medium', // set element-ui default size
+  locale: enLang // 如果使用中文，无需设置，请删除
+})
+
+// register global utility filters
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
+})
 
 Vue.config.productionTip = false
 
-// Adding template layouts to the vue components.
-Vue.component("layout-default", DefaultLayout);
-Vue.component("layout-dashboard", DashboardLayout);
-Vue.component("layout-dashboard-rtl", DashboardRTLLayout);
-
 new Vue({
+  el: '#app',
   router,
+  store,
   render: h => h(App)
-}).$mount('#app')
+})

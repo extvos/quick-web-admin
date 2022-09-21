@@ -71,23 +71,6 @@ class Client {
   }
 }
 
-export const Device = new Restlet('/apis/devices', '/apis/device')
-export const Group = new Restlet('/apis/groups', '/apis/group')
-export const Letter = new Restlet('/apis/letters', '/apis/letter')
-export const Delivery = new Restlet('/apis/deliveries', '/apis/delivery')
-
-export const Kind = new Restlet('/adm/kinds', '/adm/kind')
-export const Customer = new Restlet('/adm/customers', '/adm/customer')
-
-export const LetterTags = new Client('/apis/letters/tags')
-export const DeviceTags = new Client('/apis/devices/tags')
-export const DeviceKinds = new Client('/apis/devices/kinds')
-export const GroupTags = new Client('/apis/groups/tags')
-
-export const Statuses = [
-  { value: -2, label: '拒绝', color: '#F56C6C' },
-  { value: -1, label: '检测失败', color: '#E6A23C' },
-  { value: 0, label: '未处理', color: '#DCDFE6' },
-  { value: 1, label: '检测通过', color: '#303133' },
-  { value: 2, label: '审核通过', color: '#409EFF' }
-]
+export function Request(url) {
+  return new Client(url)
+}
