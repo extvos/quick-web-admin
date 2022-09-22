@@ -4,6 +4,7 @@
     :visible="visible"
     :before-close="handleClose"
     width="840px"
+    :close-on-click-modal="false"
     @close="closeDialog"
   >
     <el-form
@@ -14,7 +15,7 @@
       label-width="120px"
     >
       <el-row :gutter="10">
-        <el-col :span="12">
+        <el-col :span="10">
           <el-form-item
             label="用户名"
             prop="username"
@@ -22,6 +23,18 @@
             <el-input
               v-model="editForm.username"
               :disabled="editForm.id"
+              class="filter-item"
+              size="mini"
+            />
+          </el-form-item>
+        </el-col>
+        <el-col :span="10">
+          <el-form-item
+            label="昵 称"
+            prop="nickname"
+          >
+            <el-input
+              v-model="editForm.nickname"
               class="filter-item"
               size="mini"
             />
@@ -54,21 +67,7 @@
         </el-col>
       </el-row>
       <el-row :gutter="10">
-        <el-col :span="12">
-          <el-form-item
-            label="昵 称"
-            prop="nickname"
-          >
-            <el-input
-              v-model="editForm.nickname"
-              class="filter-item"
-              size="mini"
-            />
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row :gutter="10">
-        <el-col :span="12">
+        <el-col :span="8">
           <el-form-item
             label="电 话"
             prop="cellphone"
@@ -80,7 +79,7 @@
             />
           </el-form-item>
         </el-col>
-        <el-col :span="12">
+        <el-col :span="10">
           <el-form-item
             label="邮 箱"
             prop="email"
@@ -92,13 +91,12 @@
             />
           </el-form-item>
         </el-col>
-        <el-col :span="12">
+        <el-col :span="6">
           <el-form-item label="激 活">
             <el-switch v-model="editForm.status" :active-value="1" :inactive-value="0" />
           </el-form-item>
         </el-col>
-
-        <el-col :span="16">
+        <el-col :span="12">
           <el-form-item
             label="角 色"
             prop="selectRoles"
@@ -106,7 +104,7 @@
             <role-select v-model="editForm.roleIds" size="mini" />
           </el-form-item>
         </el-col>
-        <el-col :span="16">
+        <el-col :span="12">
           <el-form-item
             label="权 限"
             prop="selectPermissions"

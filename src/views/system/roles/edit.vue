@@ -4,6 +4,7 @@
     :visible="visible"
     :before-close="handleClose"
     width="540px"
+    :close-on-click-modal="false"
     @close="closeDialog"
   >
     <el-form
@@ -43,7 +44,7 @@
             label="权 限"
             prop="selectPermissions"
           >
-            <permission-select v-model="editForm.permissionIds" size="mini" />
+            <permission-check v-model="editForm.permissionIds" size="mini" />
           </el-form-item>
         </el-col>
         <el-col :span="24">
@@ -81,10 +82,10 @@
 import { validUsername } from '@/utils/validate'
 import { Restlet } from '@/api/standard'
 const Role = new Restlet('/_builtin/auth/role', '/_builtin/auth/role')
-import PermissionSelect from '../permissions/select.vue'
+import PermissionCheck from '../permissions/check.vue'
 export default {
   name: 'RoleEdit',
-  components: { PermissionSelect },
+  components: { PermissionCheck },
   props: {
     visible: {
       type: Boolean,

@@ -12,10 +12,16 @@
       @sort-change="sortChange"
       @selection-change="onSelectionChange"
     >
-      <el-table-column
+      <!-- <el-table-column
         type="selection"
         width="30"
         fixed="left"
+      /> -->
+      <el-table-column
+        label="ID"
+        align="center"
+        width="80"
+        prop="id"
       />
       <el-table-column
         label="权限代码"

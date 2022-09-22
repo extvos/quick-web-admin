@@ -4,6 +4,7 @@
     :visible="visible"
     :before-close="handleClose"
     width="540px"
+    :close-on-click-modal="false"
     @close="closeDialog"
   >
     <el-form

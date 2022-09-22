@@ -12,11 +12,17 @@
       @sort-change="sortChange"
       @selection-change="onSelectionChange"
     >
-      <el-table-column
+      <!-- <el-table-column
         type="selection"
         align="center"
         width="30"
         fixed="left"
+      /> -->
+      <el-table-column
+        label="ID"
+        align="center"
+        width="80"
+        prop="id"
       />
       <el-table-column
         label="用户名"
