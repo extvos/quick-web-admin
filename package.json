@@ -32,10 +32,12 @@
     "normalize.css": "7.0.0",
     "nprogress": "0.2.0",
     "path-to-regexp": "2.4.0",
+    "resumablejs": "^1.1.0",
     "screenfull": "4.2.0",
     "script-loader": "0.7.2",
     "sortablejs": "1.8.4",
     "vue": "2.6.10",
+    "vue-baidu-map": "^0.21.22",
     "vue-count-to": "1.0.13",
     "vue-router": "3.0.2",
     "vue-splitpane": "1.0.4",
@@ -77,7 +79,7 @@
     "last 2 versions"
   ],
   "bugs": {
-    "url": "https://git.gdkesong.com/koss/koss-backoffice-web/issues"
+    "url": "https://github.com/extvos/quick-web-admin/issues"
   },
   "engines": {
     "node": ">=8.9",
@@ -106,6 +108,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://git.gdkesong.com/koss/koss-backoffice-web.git"
+    "url": "git+https://github.com/extvos/quick-web-admin.git"
   }
 }

@@ -74,3 +74,27 @@ class Client {
 export function Request(url) {
   return new Client(url)
 }
+
+function trimBegin(s, c) {
+  if (c === s.slice(0, c.length)) {
+    return trimBegin(s.slice(c.length), c)
+  } else {
+    return s
+  }
+}
+
+function trimEnd(s, c) {
+  if (c === s.slice(-c.length)) {
+    return trimEnd(s.slice(0, -c.length), c)
+  } else {
+    return s
+  }
+}
+
+export function FullUrl(url) {
+  if (process.env.VUE_APP_BASE_API) {
+    return trimEnd(process.env.VUE_APP_BASE_API, '/') + '/' + trimBegin(url, '/')
+  } else {
+    return url
+  }
+}

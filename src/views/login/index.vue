@@ -1,6 +1,6 @@
 <template>
   <div
-    :style="{backgroundImage:`url(${background})`, backgroundSize: 'cover'}"
+    :style="{backgroundImage:`url(${background})`}"
     class="login-container"
   >
     <div class="login-container-mask" />
@@ -14,79 +14,103 @@
     >
       <el-row>
         <el-col :span="24">
-          <div class="login-form">
-            <div
-              class="title-container"
-              align="center"
-            >
-              <h4 class="title"> 请登陆</h4>
-            </div>
-            <el-form-item prop="username">
-              <span class="svg-container">
-                <svg-icon icon-class="user" />
-              </span>
-              <el-input
-                ref="username"
-                v-model="loginForm.username"
-                placeholder="用户名"
-                name="username"
-                type="text"
-                auto-complete="on"
-              />
-            </el-form-item>
-            <el-form-item prop="password">
-              <span class="svg-container">
-                <svg-icon icon-class="password" />
-              </span>
-              <el-input
-                ref="password"
-                v-model="loginForm.password"
-                :type="passwordType"
-                placeholder="密码"
-                name="password"
-                auto-complete="on"
-                @keyup.enter.native="handleLogin"
-              />
-              <span
-                class="show-pwd"
-                @click="showPwd"
-              >
-                <svg-icon icon-class="eye" />
-              </span>
-            </el-form-item>
-            <div class="capt">
-              <el-form-item
-                prop="captcha"
-                style="width:160px"
-              >
-                <span class="svg-container">
-                  <svg-icon icon-class="captcha" />
-                </span>
-                <el-input
-                  ref="captcha"
-                  v-model="loginForm.captcha"
-                  style="width:100px"
-                  placeholder="验证码"
-                  name="captcha"
-                  auto-complete="on"
-                  @keyup.enter.native="handleLogin"
-                />
-              </el-form-item>
-              <img
-                :src="codeUrl"
-                class="code"
-                style="height:50px;margin-top:24px"
-                @click="changeCode"
-              >
-            </div>
+          <el-tabs v-model="activeTab">
+            <el-tab-pane label="帐号登录" name="passwordTab">
+              <div class="login-form">
+                <div
+                  class="title-container"
+                  align="center"
+                >
+                  <h4 class="title"> 请登陆</h4>
+                </div>
+                <el-form-item prop="username">
+                  <span class="svg-container">
+                    <svg-icon icon-class="user" />
+                  </span>
+                  <el-input
+                    ref="username"
+                    v-model="loginForm.username"
+                    placeholder="用户名"
+                    name="username"
+                    type="text"
+                    auto-complete="on"
+                  />
+                </el-form-item>
+                <el-form-item prop="password">
+                  <span class="svg-container">
+                    <svg-icon icon-class="password" />
+                  </span>
+                  <el-input
+                    ref="password"
+                    v-model="loginForm.password"
+                    :type="passwordType"
+                    placeholder="密码"
+                    name="password"
+                    auto-complete="on"
+                    @keyup.enter.native="handleLogin"
+                  />
+                  <span
+                    class="show-pwd"
+                    @click="showPwd"
+                  >
+                    <svg-icon icon-class="eye" />
+                  </span>
+                </el-form-item>
+                <div class="capt">
+                  <el-form-item
+                    prop="captcha"
+                    style="width:160px"
+                  >
+                    <span class="svg-container">
+                      <svg-icon icon-class="captcha" />
+                    </span>
+                    <el-input
+                      ref="captcha"
+                      v-model="loginForm.captcha"
+                      style="width:100px"
+                      placeholder="验证码"
+                      name="captcha"
+                      auto-complete="on"
+                      @keyup.enter.native="handleLogin"
+                    />
+                  </el-form-item>
+                  <img
+                    :src="codeUrl"
+                    class="code"
+                    style="height:50px;margin-top:24px"
+                    @click="changeCode"
+                  >
+                </div>
 
-            <el-button
-              :loading="loading"
-              type="primary"
-              style="width:100%;margin-bottom:20px;margin-top:20px"
-              @click.native.prevent="handleLogin"
-            >登 录</el-button>
-          </div>
+                <el-button
+                  :loading="loading"
+                  type="primary"
+                  style="width:100%;margin-bottom:20px;margin-top:20px"
+                  @click.native.prevent="handleLogin"
+                >登 录</el-button>
+              </div>
+            </el-tab-pane>
+            <el-tab-pane label="扫码登录" name="qrCodeTab">
+              <div class="qr-code">
+                <div v-loading="qrloading" style="width: 100%; height: 276px;" :style="{backgroundImage:`url(${qrCodeUrl})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center'}">
+                  <el-card v-if="qrResult" class="box-card" style="width: 100%; height: 100%;">
+                    <el-result :icon="qrResult.success?'success':'error'" :title="qrResult.message" :sub-title="qrResult.success?'请稍候...':'点击按钮重试'">
+                      <template v-if="!qrResult.success" slot="extra">
+                        <el-button type="primary" icon="el-icon-refresh-right" size="small" @click="changeQrTimeCode">重试</el-button>
+                      </template>
+                    </el-result>
+                  </el-card>
+                </div>
+                <div class="qr-tips" align="center">
+                  <span v-if="!qrResult" size="mini">
+                    <small>{{ qrTips }}</small>
+                    <br><br>
+                    <el-button type="text" icon="el-icon-refresh-right" size="small" @click="changeQrTimeCode">刷新</el-button>
+                  </span>
+                </div>
+              </div>
+            </el-tab-pane>
+          </el-tabs>
         </el-col>
       </el-row>
     </el-form>
@@ -97,6 +121,7 @@
 </template>
 
 <script>
+import { FullUrl, Request } from '@/api/standard'
 import { validUsername } from '@/utils/validate'
 import defaultSettings from '@/settings'
 import logoSrc from '@/assets/logo.png'
@@ -131,6 +156,7 @@ export default {
       timeCode: new Date().getTime(),
       title: title,
       background: loginBg,
+      activeTab: 'qrCodeTab',
       loginForm: {
         username: '',
         password: '',
@@ -153,20 +179,19 @@ export default {
       showDialog: false,
       redirect: undefined,
       logo: logoSrc,
+      qrResult: null,
+      qrTips: '请使用微信扫描二维码登录',
+      qrTimeCode: new Date().getTime(),
+      qrloading: false,
       otherQuery: {}
     }
   },
   computed: {
     codeUrl() {
-      if (process.env.VUE_APP_BASE_API) {
-        if (process.env.VUE_APP_BASE_API.endsWith('/')) {
-          return process.env.VUE_APP_BASE_API + 'auth/captcha-image' + '?timestamp=' + this.timeCode
-        } else {
-          return process.env.VUE_APP_BASE_API + '/auth/captcha-image' + '?timestamp=' + this.timeCode
-        }
-      } else {
-        return '/auth/captcha-image' + '?timestamp=' + this.timeCode
-      }
+      return FullUrl('/auth/captcha-image' + '?timestamp=' + this.timeCode)
+    },
+    qrCodeUrl() {
+      return FullUrl('/auth/oauth2/wechat/code-img?size=256' + '&t=' + this.qrTimeCode)
     }
   },
   watch: {
@@ -179,10 +204,19 @@ export default {
         }
       },
       immediate: true
+    },
+    activeTab: function(t) {
+      console.log('activeTab:>', t)
+      if (t === 'qrCodeTab') {
+        setTimeout(this.chechQrCodeStatus, 3000)
+      }
     }
   },
   created() {
     // window.addEventListener('storage', this.afterQRScan)
+    if (this.activeTab === 'qrCodeTab') {
+      setTimeout(this.chechQrCodeStatus, 3000)
+    }
   },
   mounted() {
     if (this.loginForm.username === '') {
@@ -198,9 +232,61 @@ export default {
     changeCode() {
       this.timeCode = new Date().getTime()
     },
+    changeQrTimeCode() {
+      this.qrResult = null
+      this.qrloading = false
+      this.qrTimeCode = new Date().getTime()
+      setTimeout(this.chechQrCodeStatus, 3000)
+    },
     checkCapslock(e) {
       const { key } = e
       this.capsTooltip = key && key.length === 1 && (key >= 'A' && key <= 'Z')
+    },
+    chechQrCodeStatus() {
+      Request('/auth/oauth2/wechat/auth-refresh').get().then(res => {
+        const d = res.data
+        console.log('Request status:>', d.status, d.session, d.userId, d.username)
+        if (this.activeTab !== 'qrCodeTab') {
+          this.qrloading = false
+          this.qrResult = null
+          return
+        }
+        if (d.status < 0) {
+          this.qrloading = false
+          this.qrResult = {
+            success: false,
+            message: '失败！'
+          }
+          return
+        }
+        if (d.status > 0) {
+          this.qrloading = true
+          this.qrTips = '已扫码，请稍候'
+        }
+        if (d.status === 4) {
+          this.qrTips = '未注册或绑定用户，请完成注册绑定'
+        }
+        if (d.status < 5) {
+          setTimeout(this.chechQrCodeStatus, 1000)
+        } else {
+          // this.qrloading = false
+          this.$store.dispatch('user/loginCheck')
+            .then(() => {
+              console.log('loginCheck:> done ...')
+              this.qrResult = { success: true, message: '登录成功!' }
+              setTimeout(() => {
+                this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
+              }, 2000)
+              this.qrloading = false
+            })
+            .catch((e) => {
+              console.log('loginCheck:> failed ...', e)
+              this.qrResult = { success: false, message: e }
+              this.qrloading = false
+              // this.changeQrTimeCode()
+            })
+        }
+      })
     },
     showPwd() {
       if (this.passwordType === 'password') {
@@ -223,6 +309,7 @@ export default {
             })
             .catch(() => {
               this.loading = false
+              this.changeCode()
             })
         } else {
           console.log('error submit!!')
@@ -283,6 +370,37 @@ $cursor: #fff;
   display: flex;
   justify-content: space-between;
   margin-top: -20px;
+}
+
+.el-result {
+  padding: 10px 10px;
+}
+
+.el-tabs__header {
+  align-content: center;
+  padding-top: 12px;
+  margin-left: 24px;
+  margin-right: 24px;
+}
+
+.el-tabs__nav-wrap:after {
+  background-color: none;
+}
+
+.qr-code {
+  width: 100%;
+  height: 100%;
+  padding-top: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 20px;
+}
+.qr-tips {
+  margin-top: 10px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
 }
 /* reset element-ui css */
 .login-container {
@@ -391,7 +509,7 @@ footer {
     // height: 400px;
     // top: 100px;
     // height: 100%;
-    padding: 30px 35px;
+    padding: 0px 25px;
     margin: 0 auto;
     overflow: hidden;
     background: $light_gray; //linear-gradient(135deg, transparent 20px, $light_gray 0) top left;

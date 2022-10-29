@@ -109,8 +109,8 @@ export default {
 .el-tag + .el-tag {
   margin-left: 10px;
 }
-.button-new-tag {
-  /* margin-left: 10px; */
+.el-tag + .button-new-tag {
+  margin-left: 10px;
   height: 30px;
   line-height: 30px;
   padding-top: 0;

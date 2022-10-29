@@ -38,6 +38,9 @@ Vue.use(Element, {
   // locale: enLang // 如果使用中文，无需设置，请删除
 })
 
+import BaiduMap from 'vue-baidu-map'
+
+Vue.use(BaiduMap, { ak: 'E705bb2db52649336026655dfb9204e3' })
 // register global utility filters
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])

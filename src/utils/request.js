@@ -43,7 +43,7 @@ service.interceptors.response.use(
    * You can also judge the status by HTTP Status Code
    */
   response => {
-    const res = response.data
+    // const res = response.data
     // console.log('response:>', response)
     // console.log('res:>', res)
     if (response.status === 401) {
@@ -56,7 +56,7 @@ service.interceptors.response.use(
           location.reload()
         })
       })
-      return Promise.reject(new Error(res.message || 'Error'))
+      // return Promise.reject(new Error(res.message || 'Error'))
     } else {
       return response.data
     }
