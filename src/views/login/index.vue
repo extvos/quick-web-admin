@@ -85,7 +85,7 @@
                   <el-col :span="10">
                     <el-button
                       style="width:100%;margin-bottom:20px;margin-top:20px"
-                      @click="registerVisible = true"
+                      @click="handleRegister(false)"
                     >注 册</el-button></el-col>
                   <el-col :span="14">
                     <el-button
@@ -114,7 +114,7 @@
                     <small v-if="qrStatus == 0">请使用微信扫描二维码登录</small>
                     <small v-else-if="qrStatus >0 && qrStatus < 5">已扫码，请稍候</small>
                     <small v-else-if="qrStatus == 5">未注册或绑定用户，请
-                      <el-button size="mini" @click="registerVisible =true">注册</el-button>
+                      <el-button size="mini" @click="handleRegister(true)">注册</el-button>
                       或
                       <el-button size="mini" @click="attachVisible = true">绑定</el-button>
                     </small>
@@ -129,7 +129,7 @@
       </el-row>
     </el-form>
     <attach-dialog :visible="attachVisible" @close="attachVisible = false" />
-    <register-dialog :visible="registerVisible" @close="registerVisible = false" />
+    <register-dialog :visible="registerVisible" :provider="provider" @close="registerVisible = false" />
     <footer>
       &copy; 2022
     </footer>
@@ -200,6 +200,7 @@ export default {
       attachVisible: false,
       registerVisible: false,
       qrResult: null,
+      provider: '',
       qrStatus: 0,
       qrTips: '请使用微信扫描二维码登录',
       qrTimeCode: new Date().getTime(),
@@ -263,6 +264,14 @@ export default {
     checkCapslock(e) {
       const { key } = e
       this.capsTooltip = key && key.length === 1 && (key >= 'A' && key <= 'Z')
+    },
+    handleRegister(n) {
+      if (n) {
+        this.provider = 'wechat'
+      } else {
+        this.provider = ''
+      }
+      this.registerVisible = true
     },
     chechQrCodeStatus() {
       Request('/auth/oauth2/wechat/auth-refresh').get().then(res => {
