@@ -81,13 +81,21 @@
                     @click="changeCode"
                   >
                 </div>
-
-                <el-button
-                  :loading="loading"
-                  type="primary"
-                  style="width:100%;margin-bottom:20px;margin-top:20px"
-                  @click.native.prevent="handleLogin"
-                >登 录</el-button>
+                <el-row :gutter="30">
+                  <el-col :span="10">
+                    <el-button
+                      style="width:100%;margin-bottom:20px;margin-top:20px"
+                      @click="registerVisible = true"
+                    >注 册</el-button></el-col>
+                  <el-col :span="14">
+                    <el-button
+                      :loading="loading"
+                      type="primary"
+                      style="width:100%;margin-bottom:20px;margin-top:20px"
+                      @click.native.prevent="handleLogin"
+                    >登 录</el-button>
+                  </el-col>
+                </el-row>
               </div>
             </el-tab-pane>
             <el-tab-pane label="扫码登录" name="qrCodeTab">
@@ -103,7 +111,13 @@
                 </div>
                 <div class="qr-tips" align="center">
                   <span v-if="!qrResult" size="mini">
-                    <small>{{ qrTips }}</small>
+                    <small v-if="qrStatus == 0">请使用微信扫描二维码登录</small>
+                    <small v-else-if="qrStatus >0 && qrStatus < 5">已扫码，请稍候</small>
+                    <small v-else-if="qrStatus == 5">未注册或绑定用户，请
+                      <el-button size="mini" @click="registerVisible =true">注册</el-button>
+                      或
+                      <el-button size="mini" @click="attachVisible = true">绑定</el-button>
+                    </small>
                     <br><br>
                     <el-button type="text" icon="el-icon-refresh-right" size="small" @click="changeQrTimeCode">刷新</el-button>
                   </span>
@@ -114,6 +128,8 @@
         </el-col>
       </el-row>
     </el-form>
+    <attach-dialog :visible="attachVisible" @close="attachVisible = false" />
+    <register-dialog :visible="registerVisible" @close="registerVisible = false" />
     <footer>
       &copy; 2022
     </footer>
@@ -126,10 +142,12 @@ import { validUsername } from '@/utils/validate'
 import defaultSettings from '@/settings'
 import logoSrc from '@/assets/logo.png'
 import loginBg from '@/assets/login_bg.jpg'
+import AttachDialog from './attach.vue'
+import RegisterDialog from './register.vue'
 const { title } = defaultSettings
 export default {
   name: 'Login',
-  components: {},
+  components: { AttachDialog, RegisterDialog },
   data() {
     const validateUsername = (rule, value, callback) => {
       if (!validUsername(value)) {
@@ -179,7 +197,10 @@ export default {
       showDialog: false,
       redirect: undefined,
       logo: logoSrc,
+      attachVisible: false,
+      registerVisible: false,
       qrResult: null,
+      qrStatus: 0,
       qrTips: '请使用微信扫描二维码登录',
       qrTimeCode: new Date().getTime(),
       qrloading: false,
@@ -207,6 +228,7 @@ export default {
     },
     activeTab: function(t) {
       console.log('activeTab:>', t)
+      this.qrStatus = 0
       if (t === 'qrCodeTab') {
         setTimeout(this.chechQrCodeStatus, 3000)
       }
@@ -249,8 +271,10 @@ export default {
         if (this.activeTab !== 'qrCodeTab') {
           this.qrloading = false
           this.qrResult = null
+          this.qrStatus = 0
           return
         }
+        this.qrStatus = d.status
         if (d.status < 0) {
           this.qrloading = false
           this.qrResult = {
@@ -263,10 +287,10 @@ export default {
           this.qrloading = true
           this.qrTips = '已扫码，请稍候'
         }
-        if (d.status === 4) {
+        if (d.status === 5) {
           this.qrTips = '未注册或绑定用户，请完成注册绑定'
         }
-        if (d.status < 5) {
+        if (d.status < 6) {
           setTimeout(this.chechQrCodeStatus, 1000)
         } else {
           // this.qrloading = false
@@ -346,7 +370,6 @@ export default {
   }
 }
 </script>
-
 <style lang="scss">
 /* 修复input 背景不协调 和光标变色 */
 /* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */
@@ -356,7 +379,7 @@ $cursor: #fff;
 
 @supports (-webkit-mask: none) and (not (cater-color: $cursor)) {
   .login-container .el-input input {
-    color: $cursor;
+    // color: $cursor;
   }
 }
 .login-container-mask {
@@ -403,7 +426,13 @@ $cursor: #fff;
   padding-bottom: 10px;
 }
 /* reset element-ui css */
-.login-container {
+.login-card {
+  .el-form-item {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    color: #1d1c1c;
+  }
   .el-input {
     display: inline-block;
     height: 47px;
@@ -426,13 +455,6 @@ $cursor: #fff;
     placeholder {
       color: #514b4b;
     }
-  }
-
-  .el-form-item {
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    color: #1d1c1c;
   }
 }
 </style>
@@ -585,44 +607,4 @@ footer {
     }
   }
 }
-</style>
-<style type="text/css">
-	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#B3D8FF;}
-	.st1{fill:#80C0FF;}
-	.st2{fill:#EBF5FF;}
-	.st3{fill-rule:evenodd;clip-rule:evenodd;fill:#80C0FF;}
-	.st4{fill-rule:evenodd;clip-rule:evenodd;fill:#EBF5FF;}
-	.st5{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_1_);}
-	.st6{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_2_);}
-	.st7{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_3_);}
-	.st8{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_4_);}
-	.st9{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_5_);}
-	.st10{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_6_);}
-	.st11{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_7_);}
-	.st12{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_8_);}
-	.st13{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_9_);}
-	.st14{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_10_);}
-	.st15{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_11_);}
-	.st16{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_12_);}
-	.st17{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_13_);}
-	.st18{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_14_);}
-	.st19{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_15_);}
-	.st20{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_16_);}
-	.st21{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_17_);}
-	.st22{fill-rule:evenodd;clip-rule:evenodd;fill:url(#Pants_1_);}
-	.st23{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_18_);}
-	.st24{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_19_);}
-	.st25{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_20_);}
-	.st26{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_21_);}
-	.st27{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_22_);}
-	.st28{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_23_);}
-	.st29{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_24_);}
-	.st30{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_25_);}
-	.st31{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_26_);}
-	.st32{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_27_);}
-	.st33{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_28_);}
-	.st34{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_29_);}
-	.st35{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_30_);}
-	.st36{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_31_);}
-	.st37{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_32_);}
 </style>

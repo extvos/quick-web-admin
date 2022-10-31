@@ -46,6 +46,27 @@ const actions = {
     })
   },
 
+  loginCheck({ commit, state }) {
+    return new Promise((resolve, reject) => {
+      getInfo(state.token).then(response => {
+        const { data } = response
+        if (!data) {
+          reject('用户数据验证失败，请重新登陆')
+        }
+        const { roles } = data
+        // roles must be a non-empty array
+        if (!roles || roles.length <= 0) {
+          reject('用户未授予任何权限！')
+        }
+
+        commit('SET_TOKEN', data.code)
+        setToken(data.code)
+        resolve()
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
   // get user info
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
