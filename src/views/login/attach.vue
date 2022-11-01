@@ -87,7 +87,7 @@
             :loading="loading"
             type="primary"
             style="width: 100%; height: 48px;"
-            @click.native.prevent="handleRegister"
+            @click.native.prevent="handleLogin"
           >绑 定</el-button>
         </el-col>
       </el-row>
@@ -112,9 +112,13 @@ export default {
       type: Boolean,
       required: true
     },
-    editObject: {
-      type: Object,
-      required: true
+    provider: {
+      type: String,
+      default: null
+    },
+    openId: {
+      type: String,
+      default: null
     }
   },
   data() {
@@ -122,13 +126,7 @@ export default {
       if (!validUsername(value)) {
         callback(new Error('请输入正确的用户名！'))
       } else {
-        Request('/auth/check-username?username=' + value).post({ }).then(res => {
-          if (res.data.exists) {
-            callback(new Error('用户名已经存在！'))
-          } else {
-            callback()
-          }
-        })
+        callback()
       }
     }
     const validatePassword = (rule, value, callback) => {
@@ -151,21 +149,15 @@ export default {
       background: loginBg,
       registerForm: {
         username: '',
-        password1: '',
-        password2: '',
-        cellphone: '',
-        email: '',
+        password: '',
         captcha: ''
       },
       registerRules: {
         username: [
           { required: true, trigger: 'blur', validator: validateUsername }
         ],
-        password1: [
+        password: [
           { required: true, trigger: 'blur', validator: validatePassword }
-        ],
-        password2: [
-          { required: true, trigger: 'blur', validator: this.validatePassword }
         ],
         captcha: [
           { required: true, trigger: 'blur', validator: validatecaptcha }
@@ -177,8 +169,6 @@ export default {
       showDialog: false,
       redirect: undefined,
       logo: logoSrc,
-      oAuthProvider: '',
-      openId: '',
       otherQuery: {}
     }
   },
@@ -191,18 +181,6 @@ export default {
     }
   },
   watch: {
-    $route: {
-      handler: function(route) {
-        const query = route.query
-        if (query) {
-          this.redirect = query.redirect
-          this.oAuthProvider = query.p
-          this.openId = query.oid
-          this.otherQuery = this.getOtherQuery(query)
-        }
-      },
-      immediate: true
-    }
   },
   created() {
     // window.addEventListener('storage', this.afterQRScan)
@@ -254,36 +232,25 @@ export default {
     handleReset() {
       this.registerForm = {
         username: '',
-        password1: '',
-        password2: '',
-        cellphone: '',
-        email: '',
+        password: '',
         captcha: ''
       }
       this.changeCode()
       this.loading = false
       this.$refs.registerForm.resetFields()
     },
-    handleRegister() {
+    handleLogin() {
       this.$refs.registerForm.validate(valid => {
         if (valid) {
           this.loading = true
           const params = {
             username: this.registerForm.username,
-            password: md5(this.registerForm.password1),
-            cellphone: this.registerForm.cellphone,
-            email: this.registerForm.email
+            password: md5(this.registerForm.password)
           }
-          let url = '/auth/register?captcha=' + this.registerForm.captcha
-          if (this.oAuthProvider) {
-            url = '/auth/oauth2/' + this.oAuthProvider + '/register?captcha=' + this.registerForm.captcha
-            if (this.openId) {
-              params.openId = this.openId
-            }
-          }
+          const url = '/auth/oauth2/' + this.provider + '/login?captcha=' + this.registerForm.captcha
           Request(url).post(params).then(res => {
-            this.$message.success('注册成功')
-            this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
+            this.$message.success('登录绑定成功')
+            this.$emit('close', true)
             this.loading = false
           })
         } else {

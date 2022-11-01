@@ -79,15 +79,15 @@
       </el-row>
       <el-row :gutter="20">
         <el-col :span="12">
-          <el-form-item prop="cellphone">
+          <el-form-item prop="phoneNumber">
             <span class="svg-container">
               <svg-icon icon-class="phone" />
             </span>
             <el-input
-              ref="cellphone"
-              v-model="registerForm.cellphone"
+              ref="phoneNumber"
+              v-model="registerForm.phoneNumber"
               placeholder="电话号码"
-              name="cellphone"
+              name="phoneNumber"
               type="text"
               auto-complete="on"
             />
@@ -233,7 +233,7 @@ export default {
         username: '',
         password1: '',
         password2: '',
-        cellphone: '',
+        phoneNumber: '',
         email: '',
         captcha: ''
       },
@@ -250,7 +250,7 @@ export default {
         captcha: [
           { required: true, trigger: 'blur', validator: validatecaptcha }
         ],
-        cellphone: [
+        phoneNumber: [
           { required: true, trigger: 'blur', validator: validateCellphone }
         ],
         email: [
@@ -344,7 +344,7 @@ export default {
         username: '',
         password1: '',
         password2: '',
-        cellphone: '',
+        phoneNumber: '',
         email: '',
         captcha: ''
       }
@@ -359,7 +359,7 @@ export default {
           const params = {
             username: this.registerForm.username,
             password: md5(this.registerForm.password1),
-            cellphone: this.registerForm.cellphone,
+            phoneNumber: this.registerForm.phoneNumber,
             email: this.registerForm.email
           }
           let url = '/auth/register?captcha=' + this.registerForm.captcha

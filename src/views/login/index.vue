@@ -128,7 +128,7 @@
         </el-col>
       </el-row>
     </el-form>
-    <attach-dialog :visible="attachVisible" @close="attachVisible = false" />
+    <attach-dialog :visible="attachVisible" provider="wechat" @close="attachVisible = false" />
     <register-dialog :visible="registerVisible" :provider="provider" @close="registerVisible = false" />
     <footer>
       &copy; 2022
