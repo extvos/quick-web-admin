@@ -8,7 +8,8 @@ const state = {
   avatar: '',
   nickname: '',
   introduction: '',
-  roles: []
+  roles: [],
+  userInfo: {}
 }
 
 const mutations = {
@@ -29,18 +30,19 @@ const mutations = {
   },
   SET_ROLES: (state, roles) => {
     state.roles = roles
+  },
+  SET_USERINFO: (state, userInfo) => {
+    state.userInfo = userInfo
   }
 }
 
 const actions = {
   // user login
   login({ commit }, userInfo) {
-    console.log('login: userInfo:', userInfo)
     const { username, password, captcha } = userInfo
     return new Promise((resolve, reject) => {
       login(username.trim(), password, captcha).then(response => {
         const { data } = response
-        console.log('login:>', data)
         commit('SET_TOKEN', data.code)
         setToken(data.code)
         resolve()
@@ -88,10 +90,11 @@ const actions = {
           reject('getInfo: permissions must be a non-null array!')
         }
 
+        commit('SET_USERINFO', data)
         commit('SET_ROLES', permissions)
         commit('SET_NAME', username)
-        commit('SET_AVATAR', extraInfo.avatarUrl ? extraInfo.avatarUrl : '')
-        commit('SET_NICKNAME', extraInfo.nickname ? extraInfo.nickname : '')
+        commit('SET_AVATAR', extraInfo && extraInfo.avatarUrl ? extraInfo.avatarUrl : '')
+        commit('SET_NICKNAME', extraInfo && extraInfo.nickname ? extraInfo.nickname : '')
 
         resolve(data)
       }).catch(error => {
@@ -108,11 +111,9 @@ const actions = {
         commit('SET_ROLES', [])
         removeToken()
         resetRouter()
-
         // reset visited views and cached views
         // to fixed https://github.com/PanJiaChen/vue-element-admin/issues/2485
         dispatch('tagsView/delAllViews', null, { root: true })
-
         resolve()
       }).catch(error => {
         reject(error)

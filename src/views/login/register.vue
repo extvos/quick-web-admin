@@ -279,11 +279,11 @@ export default {
     // window.addEventListener('storage', this.afterQRScan)
   },
   mounted() {
-    if (this.registerForm.username === '') {
-      this.$refs.username.focus()
-    } else if (this.registerForm.password === '') {
-      this.$refs.password.focus()
-    }
+    // if (this.registerForm.username === '') {
+    //   this.$refs.username.focus()
+    // } else if (this.registerForm.password === '') {
+    //   this.$refs.password.focus()
+    // }
   },
   destroyed() {
     // window.removeEventListener('storage', this.afterQRScan)
@@ -332,11 +332,11 @@ export default {
         this.passwordType = 'password'
       }
       this.$nextTick(() => {
-        if (n === 1) {
-          this.$refs.password1.focus()
-        } else {
-          this.$refs.password2.focus()
-        }
+        // if (n === 1) {
+        //   this.$refs.password1.focus()
+        // } else {
+        //   this.$refs.password2.focus()
+        // }
       })
     },
     handleReset() {

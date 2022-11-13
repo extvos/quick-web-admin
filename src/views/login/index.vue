@@ -174,7 +174,7 @@ export default {
       timeCode: new Date().getTime(),
       title: title,
       background: loginBg,
-      activeTab: 'qrCodeTab',
+      activeTab: 'passwordTab',
       loginForm: {
         username: '',
         password: '',

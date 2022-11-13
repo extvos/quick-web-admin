@@ -14,7 +14,7 @@
 
       </template>
 
-      <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
+      <el-dropdown class="avatar-container right-menu-item hover-effect" @command="handleCommand">
         <div class="avatar-wrapper">
           <img :src="avatar?avatar:logo" class="user-avatar">
           <i class="el-icon-caret-bottom" />
@@ -23,6 +23,7 @@
           <router-link to="/profile/index">
             <el-dropdown-item>个人信息</el-dropdown-item>
           </router-link>
+          <el-dropdown-item v-if="!userInfo.openId" command="wechat">绑定微信</el-dropdown-item>
           <!-- <router-link to="/">
             <el-dropdown-item>首页</el-dropdown-item>
           </router-link> -->
@@ -35,6 +36,7 @@
         </el-dropdown-menu>
       </el-dropdown>
     </div>
+    <wechat-dialog :visible="wechatDialogVisible" title="绑定微信登录" auto-close @close="wechatDialogVisible = false" />
   </div>
 </template>
 
@@ -44,6 +46,7 @@ import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
 // import ErrorLog from '@/components/ErrorLog'
 import Screenfull from '@/components/Screenfull'
+import WechatDialog from '@/components/WechatLogin/dialog.vue'
 // import SizeSelect from '@/components/SizeSelect'
 // import Search from '@/components/HeaderSearch'
 import logoSrc from '@/assets/logo-dark.png'
@@ -54,26 +57,35 @@ export default {
     Breadcrumb,
     Hamburger,
     // ErrorLog,
-    Screenfull
+    Screenfull,
+    WechatDialog
     // SizeSelect
     // Search,
     // logoSrc
   },
   data() {
     return {
-      logo: logoSrc
+      logo: logoSrc,
+      wechatDialogVisible: false
     }
   },
   computed: {
     ...mapGetters([
       'sidebar',
       'avatar',
+      'userInfo',
       'device'
     ])
   },
   methods: {
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
+    },
+    handleCommand(cmd) {
+      console.log('handleCommand:>', cmd)
+      if (cmd === 'wechat') {
+        this.wechatDialogVisible = true
+      }
     },
     async logout() {
       await this.$store.dispatch('user/logout')
