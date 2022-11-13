@@ -71,10 +71,6 @@ export default {
       const r = v1.join(',')
       const nodes = this.$refs.selector.getCheckedNodes()
       const rl = nodes.length > 0 ? nodes[0].pathLabels.join(',') : ''
-      console.log('onSelectChange1:', v1)
-      console.log('onSelectChange2:', this.district)
-      console.log('onSelectChange3:', r)
-      console.log('onSelectChange4:', rl)
       this.$emit('change', r, rl)
       this.$emit('input', r, rl)
     }

@@ -6,6 +6,7 @@ const state = {
   token: getToken(),
   name: '',
   avatar: '',
+  nickname: '',
   introduction: '',
   roles: []
 }
@@ -22,6 +23,9 @@ const mutations = {
   },
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
+  },
+  SET_NICKNAME: (state, nickname) => {
+    state.nickname = nickname
   },
   SET_ROLES: (state, roles) => {
     state.roles = roles
@@ -77,7 +81,7 @@ const actions = {
           reject('Verification failed, please Login again.')
         }
 
-        const { username, permissions } = data
+        const { username, permissions, extraInfo } = data
 
         // roles must be a non-empty array
         if (!permissions || permissions.length <= 0) {
@@ -86,8 +90,9 @@ const actions = {
 
         commit('SET_ROLES', permissions)
         commit('SET_NAME', username)
-        // commit('SET_AVATAR', avatar)
-        // commit('SET_INTRODUCTION', introduction)
+        commit('SET_AVATAR', extraInfo.avatarUrl ? extraInfo.avatarUrl : '')
+        commit('SET_NICKNAME', extraInfo.nickname ? extraInfo.nickname : '')
+
         resolve(data)
       }).catch(error => {
         reject(error)

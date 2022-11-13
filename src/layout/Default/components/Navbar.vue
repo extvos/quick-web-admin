@@ -16,8 +16,7 @@
 
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
         <div class="avatar-wrapper">
-          <img :src="logo" class="user-avatar">
-          {{ avatar }}
+          <img :src="avatar?avatar:logo" class="user-avatar">
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown">
@@ -27,6 +26,9 @@
           <!-- <router-link to="/">
             <el-dropdown-item>首页</el-dropdown-item>
           </router-link> -->
+          <router-link to="/system/version">
+            <el-dropdown-item>系统版本</el-dropdown-item>
+          </router-link>
           <el-dropdown-item divided @click.native="logout">
             <span style="display:block;">退出登陆</span>
           </el-dropdown-item>

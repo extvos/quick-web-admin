@@ -88,7 +88,7 @@ export const constantRoutes = [
         path: 'dashboard',
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
-        meta: { title: '首页', icon: 'el-icon-data-line', affix: true }
+        meta: { title: '首页', icon: 'el-icon-s-home', affix: true }
       }
     ]
   },
@@ -128,6 +128,20 @@ export const constantRoutes = [
         component: () => import('@/views/profile/index'),
         name: 'Profile',
         meta: { title: 'Profile', icon: 'el-icon-user', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/system',
+    component: Layout,
+    redirect: '/system/version',
+    hidden: true,
+    children: [
+      {
+        path: 'version',
+        component: () => import('@/views/system/version'),
+        name: 'VersionInfo',
+        meta: { title: 'System Version', icon: 'el-icon-c-scale-to-original' }
       }
     ]
   }

@@ -6,14 +6,14 @@
 
     <div class="user-profile">
       <div class="box-center">
-        <pan-thumb :image="user.avatar" :height="'100px'" :width="'100px'" :hoverable="false">
+        <pan-thumb :image="avatar?avatar:user.avatar" :height="'100px'" :width="'100px'" :hoverable="false">
           <div>Hello</div>
           {{ user.role }}
         </pan-thumb>
       </div>
       <div class="box-center">
-        <div class="user-name text-center">{{ user.name }}</div>
-        <div class="user-role text-center text-muted">{{ user.role | uppercaseFirst }}</div>
+        <div class="user-name text-center">{{ nickname?nickname:user.username }}</div>
+        <div class="user-role text-center text-muted">{{ user.roles.join(' / ') }}</div>
       </div>
     </div>
 
@@ -54,7 +54,7 @@
 
 <script>
 import PanThumb from '@/components/PanThumb'
-
+import { mapGetters } from 'vuex'
 export default {
   components: { PanThumb },
   props: {
@@ -63,12 +63,21 @@ export default {
       default: () => {
         return {
           name: '',
+          nickname: '',
           email: '',
           avatar: '',
           role: ''
         }
       }
     }
+  },
+  computed: {
+    ...mapGetters([
+      'name',
+      'nickname',
+      'avatar',
+      'roles'
+    ])
   }
 }
 </script>

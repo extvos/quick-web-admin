@@ -186,11 +186,11 @@ export default {
     // window.addEventListener('storage', this.afterQRScan)
   },
   mounted() {
-    if (this.registerForm.username === '') {
-      this.$refs.username.focus()
-    } else if (this.registerForm.password === '') {
-      this.$refs.password.focus()
-    }
+    // if (this.registerForm.username === '') {
+    //   this.$refs.username.focus()
+    // } else if (this.registerForm.password === '') {
+    //   this.$refs.password.focus()
+    // }
   },
   destroyed() {
     // window.removeEventListener('storage', this.afterQRScan)
@@ -252,6 +252,9 @@ export default {
             this.$message.success('登录绑定成功')
             this.$emit('close', true)
             this.loading = false
+          }).catch(e => {
+            this.loading = false
+            this.changeCode()
           })
         } else {
           console.log('error submit!!')

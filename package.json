@@ -1,8 +1,8 @@
 {
-  "name": "koss-backoffice-web",
+  "name": "quick-web-admin",
   "version": "1.0.0",
-  "description": "Wdmin web for telereog Platform",
-  "author": "Mingcai SHEN <shenmingcai@gdkesong.com>",
+  "description": "Wdmin web for quickstart Platform",
+  "author": "Mingcai SHEN <archsh@gmail.com>",
   "scripts": {
     "dev": "vue-cli-service serve",
     "lint": "eslint --fix --ext .js,.vue src",

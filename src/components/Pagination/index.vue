@@ -10,7 +10,15 @@
       v-bind="$attrs"
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
-    />
+    >
+      <el-button
+        v-if="reload"
+        type="text"
+        size="mini"
+        icon="el-icon-refresh"
+        @click="handleReload"
+      >Ë¢ÐÂ</el-button>
+    </el-pagination>
   </div>
 </template>
 
@@ -40,7 +48,11 @@ export default {
     },
     layout: {
       type: String,
-      default: 'total, sizes, prev, pager, next, jumper'
+      default: 'total, sizes, prev, pager, next, jumper, slot'
+    },
+    reload: {
+      type: Boolean,
+      default: false
     },
     background: {
       type: Boolean,
@@ -85,6 +97,9 @@ export default {
       if (this.autoScroll) {
         scrollTo(0, 800)
       }
+    },
+    handleReload() {
+      this.$emit('reload', true)
     }
   }
 }
