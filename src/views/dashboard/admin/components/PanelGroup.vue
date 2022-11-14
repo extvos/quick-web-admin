@@ -57,7 +57,7 @@
 
 <script>
 import CountTo from 'vue-count-to'
-import requests from '@/utils/request.js'
+// import requests from '@/utils/request.js'
 export default {
   components: {
     CountTo
@@ -71,14 +71,14 @@ export default {
     }
   },
   created() {
-    requests.get('/statistic/dashboard/panel-counts').then(res => {
-      if (res.data) {
-        this.visits = res.data.users
-        this.snapshots = res.data.snapshots
-        this.results = res.data.results
-        this.devices = res.data.devices
-      }
-    })
+    // requests.get('/statistic/dashboard/panel-counts').then(res => {
+    //   if (res.data) {
+    //     this.visits = res.data.users
+    //     this.snapshots = res.data.snapshots
+    //     this.results = res.data.results
+    //     this.devices = res.data.devices
+    //   }
+    // })
   },
   methods: {
     handleSetLineChartData(type) {

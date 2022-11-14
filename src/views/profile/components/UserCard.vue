@@ -6,14 +6,11 @@
 
     <div class="user-profile">
       <div class="box-center">
-        <pan-thumb :image="avatar?avatar:user.avatar" :height="'100px'" :width="'100px'" :hoverable="false">
-          <div>Hello</div>
-          {{ user.role }}
-        </pan-thumb>
+        <pan-thumb :image="avatar?avatar:user.avatar" :height="'100px'" :width="'100px'" :hoverable="false" />
       </div>
       <div class="box-center">
         <div class="user-name text-center">{{ nickname?nickname:user.username }}</div>
-        <div class="user-role text-center text-muted">{{ user.roles.join(' / ') }}</div>
+        <div class="user-role text-center text-muted">{{ user.roles ? user.roles.join(' / '):'' }}</div>
       </div>
     </div>
 

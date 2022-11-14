@@ -11,6 +11,7 @@ export default {
   name: 'Dashboard',
   components: { AdminDashboard },
   data() {
+    return {}
   },
   computed: {
   },
